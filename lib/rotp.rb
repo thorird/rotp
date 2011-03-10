@@ -1,7 +1,7 @@
 require 'rotp/otp'
 require 'rotp/hotp'
 require 'rotp/totp'
-require 'base32'
+require 'junkfood'
 require 'uri'
 require 'openssl'
 

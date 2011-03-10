@@ -26,18 +26,18 @@ module ROTP
         int_to_bytestring(input)
       )
 
-      offset = hmac[19] & 0xf
-      code = (hmac[offset] & 0x7f) << 24 |
-        (hmac[offset + 1] & 0xff) << 16 |
-        (hmac[offset + 2] & 0xff) << 8 |
-        (hmac[offset + 3] & 0xff)
+      offset = hmac.bytes.to_a[19] & 0xf
+      code = (hmac.bytes.to_a[offset] & 0x7f) << 24 |
+        (hmac.bytes.to_a[offset + 1] & 0xff) << 16 |
+        (hmac.bytes.to_a[offset + 2] & 0xff) << 8 |
+        (hmac.bytes.to_a[offset + 3] & 0xff)
       code % 10 ** digits
     end
 
     private
 
     def byte_secret
-      Base32.decode(@secret)
+      Junkfood::Base32.decode @secret
     end
 
     # Turns an integer to the OATH specified
