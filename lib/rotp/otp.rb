@@ -37,7 +37,7 @@ module ROTP
     private
 
     def byte_secret
-      Junkfood::Base32.decode @secret
+      Junkfood::Base32.decode(@secret).string
     end
 
     # Turns an integer to the OATH specified
